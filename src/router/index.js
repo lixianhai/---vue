@@ -3,6 +3,32 @@ import Router from 'vue-router'
 import Layout from '@/Layout'
 
 Vue.use(Router)
+// 需要左方向动画的路由用this.$router.to('****')
+Router.prototype.togo = function (path, query) {
+  this.isleft = true
+  this.isright = false
+  const param = {
+    path,
+    query
+  }
+  this.push(param)
+}
+// 需要右方向动画的路由用this.$router.goRight('****')
+Router.prototype.toRight = function (path, query) {
+  this.isright = true
+  this.isleft = false
+  const param = {
+    path,
+    query
+  }
+  this.push(param)
+}
+// 需要返回按钮动画的路由用this.$router.goBack()，返回上一个路由
+Router.prototype.goBack = function () {
+  this.isright = true
+  this.isleft = false
+  this.go(-1)
+}
 
 export default new Router({
   routes: [

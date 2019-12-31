@@ -1,9 +1,10 @@
 <template>
-   <div style="overflow:hidden">
+   <div>
      <div class="fixed-header">
        <Header />
        <navBar v-if="isNavBar" />
        <plistTitle v-if="isPlistTitle" />
+       <singerTitle v-if="isSingeritle" />
      </div>
       <div class="mainApp">
         <appMain />
@@ -16,18 +17,15 @@ import Header from './header'
 import appMain from './appMain'
 import navBar from './navBar'
 import plistTitle from './plistTitle'
+import singerTitle from './singerTitle'
 
 export default {
   components: {
     Header,
     appMain,
     navBar,
-    plistTitle
-  },
-  watch: {
-    $route (val, newval) {
-      console.log(val.meta.singerTitle || val.meta.plistTitle)
-    }
+    plistTitle,
+    singerTitle
   },
   computed: {
     isNavBar () {
@@ -43,6 +41,13 @@ export default {
       } else {
         return false
       }
+    },
+    isSingeritle () {
+      if (this.$route.meta.singerTitle) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }
@@ -54,6 +59,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 999999;
 }
 .mainApp {
   margin-top: 125px;

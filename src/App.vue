@@ -1,12 +1,29 @@
 <template>
   <div id="app">
-    <router-view/>
+    <transition :name="transitionName">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      transitionName: ''
+    }
+  },
+  watch: {
+    $route () {
+      if (this.$router.isleft) {
+        this.transitionName = 'slideleft'
+      }
+      if (this.$router.isright) {
+        this.transitionName = 'slideright'
+      }
+    }
+  }
 }
 </script>
 
@@ -18,6 +35,6 @@ html,#app,body {
   overflow-X: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 </style>
