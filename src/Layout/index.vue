@@ -1,9 +1,13 @@
 <template>
-   <div>
+   <div style="overflow:hidden">
+     <div class="fixed-header">
        <Header />
        <navBar v-if="isNavBar" />
        <plistTitle v-if="isPlistTitle" />
-       <appMain />
+     </div>
+      <div class="mainApp">
+        <appMain />
+      </div>
    </div>
 </template>
 
@@ -43,3 +47,15 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+.fixed-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.mainApp {
+  margin-top: 125px;
+}
+</style>
