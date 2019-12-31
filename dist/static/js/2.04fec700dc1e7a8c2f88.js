@@ -1,0 +1,2 @@
+webpackJsonp([2],{"97Bd":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var s={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n    singer List\n")])},staticRenderFns:[]},r=t("VU/8")({components:{}},s,!1,null,null,null);n.default=r.exports}});
+//# sourceMappingURL=2.04fec700dc1e7a8c2f88.js.map
