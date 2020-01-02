@@ -1,9 +1,9 @@
 import axios from 'axios'
-import server from '@/server'
+// import server from '@/server'
 
 const request = axios.create({
-  baseURL: server,
-  timeout: 50000
+//   baseURL: server,
+//   timeout: 50000
 })
 
 request.interceptors.response.use(
