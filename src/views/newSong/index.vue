@@ -25,6 +25,7 @@
 
 <script>
 import { getNewSongList } from '@/api/newSong'
+import axios from 'axios'
 
 export default {
   data () {
@@ -34,6 +35,10 @@ export default {
   },
   created () {
     this.getNewSongList()
+    console.log(12121212)
+    axios.get('/api/?json=true').then(data => {
+      console.log(data)
+    })
   },
   methods: {
     getNewSongList () {
