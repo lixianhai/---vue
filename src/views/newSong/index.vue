@@ -35,7 +35,6 @@ export default {
   },
   created () {
     this.getNewSongList()
-    console.log(12121212)
     axios.get('https://m.kugou.com/rank/list&json=true').then(data => {
       console.log(data)
     })

@@ -28,7 +28,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devServer: {
     before (app) {
       apiRouters.get('/api/rank/list&json=true', (req, res) => {
-        const url = 'http://m.kugou.com/rank/list&json=true'
+        const url = 'https://m.kugou.com/rank/list&json=true'
         axios.get(url, {
           headers: {
             referer: 'http://m.kugou.com/',
