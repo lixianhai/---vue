@@ -13,7 +13,6 @@ const express = require('express')
 const app = express()
 const axios = require('axios')
 const apiRouters = express.Router()
-app.use('/api', apiRouters)
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -28,22 +27,24 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // these devServer options should be customized in /config/index.js
   devServer: {
     before (app) {
-      app.get('/api/rank/list&json=true', (req, res) => {
+      apiRouters.get('/api/rank/list&json=true', (req, res) => {
         const url = 'http://m.kugou.com/rank/list&json=true'
         axios.get(url, {
           headers: {
-            referer: 'http://m.kugou.com',
+            referer: 'http://m.kugou.com/',
             host: 'm.kugou.com'
           },
           perams: req.query
         }).then(response => {
           console.log(000)
           console.log(response)
+          res.json(res.response)
         }).catch(e => {
           console.log(111)
           console.log(e)
         })
       })
+      app.use('/api', apiRouters)
     },
     clientLogLevel: 'warning',
     historyApiFallback: {
