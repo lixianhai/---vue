@@ -1,7 +1,8 @@
 import axios from 'axios'
+import server from '@/server'
 
 const request = axios.create({
-  baseURL: 'api/',
+  baseURL: server,
   timeout: 50000
 })
 
