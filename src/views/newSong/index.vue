@@ -36,10 +36,10 @@ export default {
   created () {
     this.getNewSongList()
     console.log(12121212)
-    axios.http('http://m.kugou.com/rank/list&json=true').then(data => {
+    axios.get('https://m.kugou.com/rank/list&json=true').then(data => {
       console.log(data)
     })
-    axios.http('/api/rank/list&json=true').then(data => {
+    axios.get('/api/rank/list&json=true').then(data => {
       console.log(data)
     })
   },
