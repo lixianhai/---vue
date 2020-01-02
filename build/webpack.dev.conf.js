@@ -27,6 +27,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // these devServer options should be customized in /config/index.js
   devServer: {
     before (app) {
+      console.log(0909987868768587577)
       apiRouters.get('/api/rank/list&json=true', (req, res) => {
         const url = 'https://m.kugou.com/rank/list&json=true'
         axios.get(url, {
