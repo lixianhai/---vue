@@ -12,8 +12,8 @@ const portfinder = require('portfinder')
 const express = require('express')
 const app = express()
 const axios = require('axios')
-const apiRoutes = express.Route()
-app.use('/api', apiRoutes)
+const apiRouters = express.Router()
+app.use('/api', apiRouters)
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
