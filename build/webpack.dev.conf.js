@@ -37,8 +37,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           },
           perams: req.query
         }).then(response => {
+          console.log(000)
           console.log(response)
         }).catch(e => {
+          console.log(111)
           console.log(e)
         })
       })
