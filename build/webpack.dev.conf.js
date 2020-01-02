@@ -9,6 +9,16 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const express = require('express')
+var app = express()
+
+const routerTmp = express.Router()
+
+routerTmp.get('/api/?json=true', function(data) {
+  console.log(data)
+})
+
+app.use('/api', routerTmp)
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
