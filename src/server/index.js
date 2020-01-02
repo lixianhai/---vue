@@ -1,5 +1,5 @@
 
 // const server = '/api'
-const server = 'https://m.kugou.com/'
+const server = 'http://m.kugou.com/'
 
 export default server

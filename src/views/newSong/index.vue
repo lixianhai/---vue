@@ -25,7 +25,6 @@
 
 <script>
 import { getNewSongList } from '@/api/newSong'
-import axios from 'axios'
 
 export default {
   data () {
@@ -35,12 +34,6 @@ export default {
   },
   created () {
     this.getNewSongList()
-    axios.get('https://m.kugou.com/?json=true').then(data => {
-      console.log(data)
-    })
-    axios.get('/api/rank/list&json=true').then(data => {
-      console.log(data)
-    })
   },
   methods: {
     getNewSongList () {
