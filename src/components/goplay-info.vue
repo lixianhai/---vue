@@ -27,7 +27,19 @@
                 </div>
                 <div class="time" id="time">03:34</div>
             </div> -->
-            <audio :src="songInfo.url" autoplay="" controls="" @ended="nextsong()">    </audio>
+            <audio
+                ref="audio"
+                @pause="onPause"
+                @play="onPlay"
+                @timeupdate="onTimeupdate"
+                @loadedmetadata="onLoadedmetadata"
+                preload="auto"
+                autoplay
+                :src="songInfo.url"
+                controls="controls"
+                style="display:none;"
+            >
+            </audio>
             <div class="play-operate">
                 <svg-icon icon-class="prevSong"></svg-icon>
                 <svg-icon icon-class="stop"></svg-icon>
@@ -52,11 +64,21 @@ export default {
     }
   },
   created () {
-    console.log(this.songInfo)
+    this.$refs.audio.play()
+    this.$refs.audio.pause()
   },
   methods: {
-    nextsong (aaa) {
-      console.log(aaa)
+    onPause (aaa) {
+      console.log(aaa, 'onPause')
+    },
+    onPlay (a) {
+      console.log(a, 'onPlay')
+    },
+    onTimeupdate (a) {
+      console.log(a, 'onTimeupdate')
+    },
+    onLoadedmetadata (a) {
+      console.log(a, 'onLoadedmetadata')
     }
   }
 }

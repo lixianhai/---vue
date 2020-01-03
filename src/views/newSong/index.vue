@@ -28,7 +28,6 @@
 <script>
 import { getNewSongList, getSongInfo } from '@/api/newSong'
 import goPlay from '@/components/goplay'
-import axios from 'axios'
 
 export default {
   components: { goPlay },
@@ -45,10 +44,6 @@ export default {
   },
   created () {
     this.getNewSongList()
-    console.log(123)
-    axios.get('/api/?json=true').then(data => {
-      console.log(data)
-    })
   },
   methods: {
     getNewSongList () {
