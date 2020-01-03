@@ -46,7 +46,7 @@ export default {
   created () {
     this.getNewSongList()
     console.log(123)
-    axios.get('https://api.imjad.cn/cloudmusic/?type=search&s=%E5%B0%8F%E5%B0%8F%E7%9A%84%E5%A4%AA%E9%98%B3').then(data => {
+    axios.get('/abc/aaa').then(data => {
       console.log(data)
     })
   },

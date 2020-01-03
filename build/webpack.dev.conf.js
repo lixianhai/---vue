@@ -29,7 +29,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devServer: {
     before(apiRoutes){
       alert(123)
-      apiRoutes.get('/api/?json=true',(req,res)=>{
+      apiRoutes.get('/abc/aaa',(req,res)=>{
         const url = 'http://m.kugou.com/?json=true';
         axios.get(url, {
           headers: {
