@@ -10,6 +10,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+const express = require('express')
+const axios = require('axios')
+const app = express()
+const apiRoutes = express.Router()
+
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -22,6 +27,24 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    before(apiRoutes){
+      apiRoutes.get('/api/?json=true',(req,res)=>{
+        const url = 'http://m.kugou.com/?json=true';
+        axios.get(url, {
+          headers: {
+            referer: 'https://m.kugou.com/',
+            host: 'm.kugou.com'
+          },
+          params: req.query  //这是请求的query
+        }).then((response) => {
+          //response是api地址返回的，数据在data里。
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e);
+        })
+      });
+       app.use('/api', apiRoutes);
+    },
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [
