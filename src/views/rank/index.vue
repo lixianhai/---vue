@@ -3,6 +3,7 @@
         <li
             v-for="item in rankListData"
             :key="item.id"
+            @click="getRankInfo(item)"
         >
             <router-link :to="{path: ''}" class="rank-list-wrap">
                 <div class="img-wrap">
@@ -20,7 +21,7 @@
 </template>
 
 <script>
-import { getRankList } from '@/api/rank'
+import { getRankList, getRankInfo } from '@/api/rank'
 
 export default {
   data () {
@@ -35,14 +36,24 @@ export default {
     getRankList () {
       getRankList().then((data) => {
         this.rankListData = data.rank.list
-        console.log('排行list', data)
+      })
+    },
+    getRankInfo (item) {
+      let params = {
+        rankid: item.rankid,
+        page: 1,
+        json: true
+      }
+      getRankInfo(params).then((data) => {
+        console.log('排行info', data)
+        this.$router.push({path: '/rank/info', query: data})
       })
     }
   }
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .rank-list-wrap {
     margin-left: 15px;
     padding: 10px 30px 10px 115px;

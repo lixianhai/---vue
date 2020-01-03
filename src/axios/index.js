@@ -3,10 +3,7 @@ import server from '@/server'
 
 const request = axios.create({
   baseURL: server,
-  timeout: 50000,
-  headers: {
-    'Content-Type': 'application/json'
-  }
+  timeout: 50000
 })
 
 request.interceptors.response.use(

@@ -1,12 +1,11 @@
 <template>
-   <div>
+   <div style="width:100%;height:100%;">
      <div class="fixed-header">
        <Header />
        <navBar v-if="isNavBar" />
-       <plistTitle v-if="isPlistTitle" />
        <singerTitle v-if="isSingeritle" />
      </div>
-      <div class="mainApp">
+      <div class="mainApp" :style="{marginTop:marginTop}">
         <appMain />
       </div>
    </div>
@@ -16,7 +15,6 @@
 import Header from './header'
 import appMain from './appMain'
 import navBar from './navBar'
-import plistTitle from './plistTitle'
 import singerTitle from './singerTitle'
 
 export default {
@@ -24,7 +22,6 @@ export default {
     Header,
     appMain,
     navBar,
-    plistTitle,
     singerTitle
   },
   computed: {
@@ -35,18 +32,21 @@ export default {
         return false
       }
     },
-    isPlistTitle () {
-      if (this.$route.meta.plistTitle && !this.$route.meta.singerTitle) {
-        return true
-      } else {
-        return false
-      }
-    },
     isSingeritle () {
       if (this.$route.meta.singerTitle) {
         return true
       } else {
         return false
+      }
+    },
+    isGoPlay () {
+      return this.$store.state.isGoPlay
+    },
+    marginTop () {
+      if (this.$route.meta.keepAlive) {
+        return '125px'
+      } else {
+        return '65px'
       }
     }
   }
@@ -62,6 +62,8 @@ export default {
   z-index: 999999;
 }
 .mainApp {
-  margin-top: 125px;
+  // margin-top: 125px;
+  width: 100%;
+  height: 100%;
 }
 </style>

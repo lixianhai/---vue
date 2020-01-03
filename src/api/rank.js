@@ -7,3 +7,11 @@ export function getRankList (data) {
     data
   })
 }
+
+export function getRankInfo (data) {
+  return request({
+    url: `rank/info`,
+    methods: 'get',
+    params: data
+  })
+}

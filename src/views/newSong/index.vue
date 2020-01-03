@@ -12,6 +12,7 @@
                 <li
                     v-for="item in songData"
                     :key="item.album_id"
+                    @click="getSongInfo(item)"
                 >
                     <div class="singerName"><span>{{ item.filename }}</span></div>
                     <div class="icon">
@@ -20,16 +21,25 @@
                 </li>
             </ul>
         </div>
+        <goPlay :songInfo="songInfo" v-if="isGoPlay" />
     </div>
 </template>
 
 <script>
-import { getNewSongList } from '@/api/newSong'
+import { getNewSongList, getSongInfo } from '@/api/newSong'
+import goPlay from '@/components/goplay'
 
 export default {
+  components: { goPlay },
   data () {
     return {
-      songData: []
+      songData: [],
+      songInfo: {}
+    }
+  },
+  computed: {
+    isGoPlay () {
+      return this.$store.state.isGoPlay
     }
   },
   created () {
@@ -41,12 +51,23 @@ export default {
         this.songData = data.data
         console.log(data)
       })
+    },
+    getSongInfo (item) {
+      let params = {
+        cmd: 'playInfo',
+        hash: item.hash
+      }
+      getSongInfo(params).then((data) => {
+        this.songInfo = data
+        this.$store.dispatch('setGoPlay', true)
+        this.$store.dispatch('setSongInfo', data)
+      })
     }
   }
 }
 </script>
 
-<style  lang="less">
+<style  lang="less" scoped>
 .swipe-wrap {
     height: 170px;
     width: 100%;

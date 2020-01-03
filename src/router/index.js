@@ -39,7 +39,8 @@ export default new Router({
       children: [
         {
           path: '/',
-          component: () => import('@/views/newSong')
+          component: () => import('@/views/newSong'),
+          meta: { keepAlive: true }
         }
       ]
     },
@@ -50,7 +51,8 @@ export default new Router({
       children: [
         {
           path: 'list',
-          component: () => import('@/views/rank')
+          component: () => import('@/views/rank'),
+          meta: { keepAlive: true }
         },
         {
           path: 'info',
@@ -66,7 +68,8 @@ export default new Router({
       children: [
         {
           path: 'index',
-          component: () => import('@/views/plist')
+          component: () => import('@/views/plist'),
+          meta: { keepAlive: true }
         },
         {
           path: 'list',
@@ -82,12 +85,25 @@ export default new Router({
       children: [
         {
           path: 'index',
-          component: () => import('@/views/singer')
+          component: () => import('@/views/singer'),
+          meta: { keepAlive: true }
         },
         {
           path: 'list',
           component: () => import('@/views/singer/list'),
           meta: { singerTitle: true }
+        }
+      ]
+    },
+    {
+      path: '/play',
+      component: Layout,
+      redirect: '/play/info',
+      children: [
+        {
+          path: 'info',
+          component: () => import('@/components/goplay-info'),
+          meta: { plistTitle: true }
         }
       ]
     }
