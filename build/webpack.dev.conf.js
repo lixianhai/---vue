@@ -14,6 +14,7 @@ const express = require('express')
 const axios = require('axios')
 const app = express()
 const apiRoutes = express.Router()
+app.use('/api', apiRoutes);
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -29,7 +30,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devServer: {
     before(apiRoutes){
       alert(123)
-      apiRoutes.get('/abc/aaa',(req,res)=>{
+      apiRoutes.get('/api/?json=true',(req,res)=>{
         const url = 'http://m.kugou.com/?json=true';
         axios.get(url, {
           headers: {
@@ -44,7 +45,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           console.log(e);
         })
       });
-       app.use('/api', apiRoutes);
     },
     clientLogLevel: 'warning',
     historyApiFallback: {

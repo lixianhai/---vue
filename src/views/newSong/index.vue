@@ -46,7 +46,7 @@ export default {
   created () {
     this.getNewSongList()
     console.log(123)
-    axios.get('/abc/aaa').then(data => {
+    axios.get('/api/?json=true').then(data => {
       console.log(data)
     })
   },
