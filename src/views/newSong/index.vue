@@ -45,7 +45,8 @@ export default {
   },
   created () {
     this.getNewSongList()
-    axios.get('https://m.kugou.com/?json=true').then(data => {
+    console.log(123)
+    axios.get('http://m.kugou.com/?json=true').then(data => {
       console.log(data)
     })
   },
