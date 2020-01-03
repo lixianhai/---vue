@@ -28,6 +28,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // these devServer options should be customized in /config/index.js
   devServer: {
     before(apiRoutes){
+      alert(123)
       apiRoutes.get('/api/?json=true',(req,res)=>{
         const url = 'http://m.kugou.com/?json=true';
         axios.get(url, {
